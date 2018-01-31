@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+cat /dev/stdin |
+		sed 's/Number: [[:digit:]]\+//g' | 
+		sed 's/E-mail: [a-zA-Z0-9@. ]\+//g' | 
+		sed 's/Username: [a-zA-Z0-9.]\+//g' |
+		sed 's/[a-zA-Z ]\+\.[a-zA-Z ]\+//g' | 
+		sed 's/[^0-9.]//g'|
+		sed '/^[[:space:]]*$/d'|
+		sort -n -t . -k 1,1 -k 2,2 -k 3,3 -k 4,4 |
+		uniq;
